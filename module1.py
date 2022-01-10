@@ -40,20 +40,33 @@ def isPassOkay(password:str):
 	for i in range(len(psword)):
 		if psword[i].isupper():
 			upper=1
-			print('upper', upper)
 		if psword[i].isalpha():
 			alpha=1
-			print('alpha', alpha)
 		if psword[i].isdigit():
 			digit=1
-			print('digit', digit)
 		if psword[i] in ls:
 			special=1
-			print('spe', special)
-	if alpha==1 and digit==1 and upper==1 and special==1:
+	if alpha==1 and digit==1 and upper==1 and special==1 and len(psword)>7:
 		passOk=True
-		print('Tr')
 	else:
 		passOk=False
-		print('Fa')
 	return passOk
+
+def isUserCorrect(username, password, userList, passList):
+	"""
+	:username char: логин пользователя
+	:password char: пароль пользователя
+	:userList list: список пользователей
+	:passList list: список паролей
+	:rtype bool:
+	"""
+	if username in userList and password in passList and userList.index(username)==passList.index(password):
+		return True
+	else:
+		if username in [userList]==True:
+			print('User OK')
+		if password in [passList]==True:
+			print('Pass OK')
+		if userList.index(username)==passList.index(password):
+			print('Index OK')
+		return False
