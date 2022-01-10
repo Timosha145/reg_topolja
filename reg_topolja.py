@@ -1,7 +1,7 @@
 from random import *
 from module1 import *
-passwords=['A']
-usernames=['B']
+passwords=['Username123!']
+usernames=['Username']
 
 answerReg=''
 answerAboutPass=''
@@ -25,12 +25,12 @@ if answerReg in ['N','n']:
 	while answerAboutPass not in ['y','n','Y','N']:
 		answerAboutPass=input('Желаете авто генерацию пороля?(y/n): ')
 	while 1:
-		if answerAboutPass in ['y','Y']:
+		if passTry==0 and answerAboutPass in ['n','N']:
+			break
+		elif answerAboutPass in ['y','Y']:
 			newPass=autoPassGenerator()
 			print('Ваш пароль -',newPass)
 			answer=''
-		elif passTry==0 and answerAboutPass in ['n','N']:
-			break
 			while answer not in ['y','n','Y','N']:
 				answer=input(f'Перегенирировать пароль?(y/n): ')
 			if answer in ['n','N']:
