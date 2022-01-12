@@ -1,16 +1,16 @@
 from random import *
 from module1 import *
-passwords=['Username123!']
-usernames=['Username']
+passwords=['Username123!','Boris123!']
+usernames=['Username','Boris']
 
 answerReg=''
 answerAboutPass=''
 passTry=1
 cor=''
 a=False
+YorN=['y','Y','N','n']
 
-
-while answerReg not in ['y','n','Y','N']:
+while answerReg not in YorN:
 	answerReg=input('Добро пожаловать! Вы уже зарегистрированы?(y/n): ')
 if answerReg in ['N','n']:
 	while a==False:
@@ -22,7 +22,7 @@ if answerReg in ['N','n']:
 		elif isUserUnic(usernames,newUser)==True and len(newUser)<=12:
 			break
 	answer=''
-	while answerAboutPass not in ['y','n','Y','N']:
+	while answerAboutPass not in YorN:
 		answerAboutPass=input('Желаете авто генерацию пороля?(y/n): ')
 	while 1:
 		if passTry==0 and answerAboutPass in ['n','N']:
@@ -31,7 +31,7 @@ if answerReg in ['N','n']:
 			newPass=autoPassGenerator()
 			print('Ваш пароль -',newPass)
 			answer=''
-			while answer not in ['y','n','Y','N']:
+			while answer not in YorN:
 				answer=input(f'Перегенирировать пароль?(y/n): ')
 			if answer in ['n','N']:
 				break
@@ -42,13 +42,14 @@ if answerReg in ['N','n']:
 				print('К сожалению пароль не подходит')
 			else: 
 				while 1:
-					passAgain=input('Подтвердите ваш новый пароль: ')
+					tryAgain=''
+					pasтвеsAgain=input('Подтвердите ваш новый пароль: ')
 					if passAgain==newPass:
 						passTry=0
 						break
 					else:
 						print('К сожалению пароли не совпадают')
-						while answer not in ['y','n','Y','N']:
+						while tryAgain not in YorN:
 							tryAgain=input('Желайте придумать новый пароль?(y/n): ')
 						if tryAgain in ['y','Y']:
 							break
@@ -66,4 +67,13 @@ while 1:
 		print('Упс что-то пошло не так')
 	if cor==True:
 		break
+	else:
+		print('Упс что-то пошло не так')
+
 print('Добро пожаловать в систему!')
+answer=''
+while answer not in YorN:
+	answer=input('Желаете сыграть в игру "Камень Ножницы Бумага"?(y/n): ')
+if answer in ['Y','y']:
+	a=input('Камень, ножницы или бумага?: ')
+	RpC(a)
