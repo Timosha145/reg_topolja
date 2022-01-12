@@ -70,3 +70,30 @@ def isUserCorrect(username, password, userList, passList):
 		if userList.index(username)==passList.index(password):
 			print('Index OK')
 		return False
+def whileYes(answers:list,question:str,):
+	inputUser=''
+	"""
+	:answers list: варианты ответов
+	:question str: вопрос
+	:rtype bool:
+	"""
+	while inputUser not in answers:
+		inputUser=input(question)
+		if inputUser not in answers:
+			print('Данного варианта ответа не существует')
+	return True
+
+def RpC(choice:str):
+	"""
+	:choice str: что выбирает игрок
+	:rType str:
+	"""
+	itemsList=['камень','ножницы','бумага']
+	bot=random(0,3)
+	if bot==itemsList.index(choice):
+		otvet=f'{itemsList[bot]} против {choice} - Ничья'
+	elif bot==0 and choice=='ножницы' or bot==1 and choice=='бумага' or bot==2 and choice=='камень':
+		otvet=f'{itemsList[bot]} против {choice} - Бот победил'
+	elif bot==0 and choice=='бумага' or bot==1 and choice=='камень' or bot==2 and choice=='ножницы':
+		otvet=f'{itemsList[bot]} против {choice} - Бот победил'
+	return otvet
