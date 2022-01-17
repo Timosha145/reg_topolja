@@ -1,4 +1,4 @@
-import random
+from random import *
 def isUserUnic(usernamesList:list,newUsername:str):
 	"""
 	:param usernamesList list: список всех пользователей
@@ -23,8 +23,8 @@ def autoPassGenerator():
 	str3 = str2.upper()
 	str4 = str0+str1+str2+str3
 	ls = list(str4)
-	random.shuffle(ls)
-	psword = ''.join([random.choice(ls) for x in range(12)])
+	shuffle(ls)
+	psword = ''.join([choice(ls) for x in range(12)])
 	return psword
 
 def isPassOkay(password:str):
@@ -83,6 +83,43 @@ def whileYes(answers:list,question:str,):
 			print('Данного варианта ответа не существует')
 	return True
 
+def fileReader(f:str,l:list):
+	"""
+	:rType str:
+	"""
+	file=open(f,'r')
+	for line in file:
+		l.append(line.strip())
+	return l
+def intoFileSave(f:str,l:list):
+	file=open(f,'w')
+	for i in l:
+		file.write(i+'\n')
+def lineSave(f:str,line:str):
+	file=open(f,'a')
+	file.write(line+'\n')
+	file.close()
+
+def RockpaperScicors():
+	"""
+	:rType str:
+	"""
+	itemsList=['камень','ножницы','бумага']
+	wantToPlay='Y'
+	while wantToPlay in ['Y','y']:
+		bot=randint(0,2)
+		print(bot)
+		choice=input('Камень, ножницы или бумага?: ')
+		if bot==itemsList.index(choice):
+			otvet=f'{itemsList[bot]} против {choice} - Ничья'
+		elif  bot==0 and choice=='ножницы' or bot==1 and choice=='бумага' or bot==2 and choice=='камень':
+			otvet=f'{itemsList[bot]} против {choice} - Бот победил'
+		elif bot==0 and choice=='бумага' or bot==1 and choice=='камень' or bot==2 and choice=='ножницы':
+			otvet=f'{itemsList[bot]} против {choice} - Бот победил'
+		return otvet
+		wantToPlay=''
+		while wantToPlay not in ['y','Y','n','N']:
+			wantToPlay=input('Хочешь второй раунд?(y/n): ')
 def RpC(choice:str):
 	"""
 	:choice str: что выбирает игрок
