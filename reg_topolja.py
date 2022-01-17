@@ -1,7 +1,10 @@
 from random import *
 from module1 import *
-passwords=['Username123!','Boris123!']
-usernames=['Username','Boris']
+passwords=[]
+usernames=[]
+usernames=fileReader('usernames.txt',usernames)
+passwords=fileReader('passwords.txt',passwords)
+print(usernames, passwords)
 
 answerReg=''
 answerAboutPass=''
@@ -43,7 +46,7 @@ if answerReg in ['N','n']:
 			else: 
 				while 1:
 					tryAgain=''
-					pasтвеsAgain=input('Подтвердите ваш новый пароль: ')
+					passAgain=input('Подтвердите ваш пароль: ')
 					if passAgain==newPass:
 						passTry=0
 						break
@@ -54,6 +57,8 @@ if answerReg in ['N','n']:
 						if tryAgain in ['y','Y']:
 							break
 if answerReg in ['N','n']:
+	lineSave('usernames.txt',newUser)
+	lineSave('passwords.txt',newPass)
 	usernames.append(newUser)
 	passwords.append(newPass)
 print()
@@ -67,7 +72,7 @@ while 1:
 		print('Упс что-то пошло не так')
 	if cor==True:
 		break
-	else:
+	elif cor==False:
 		print('Упс что-то пошло не так')
 
 print('Добро пожаловать в систему!')
@@ -75,5 +80,4 @@ answer=''
 while answer not in YorN:
 	answer=input('Желаете сыграть в игру "Камень Ножницы Бумага"?(y/n): ')
 if answer in ['Y','y']:
-	a=input('Камень, ножницы или бумага?: ')
-	RpC(a)
+	print(RockpaperScicors())
